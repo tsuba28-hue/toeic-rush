@@ -1,0 +1,16 @@
+{
+  "name": "マークラッシュ TOEIC",
+  "short_name": "マークラッシュ",
+  "description": "TOEIC L&R をゲーム感覚で攻略。Part 1〜7の演習、ボス戦、コツ・裏技集。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf7f8",
+  "theme_color": "#cf3f67",
+  "lang": "ja",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
