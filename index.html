@@ -219,6 +219,52 @@ h1,h2,h3,h4{margin:0;text-wrap:balance}
 .qbtn small{color:var(--muted);font-size:12px;line-height:1.4}
 .qbtn:hover{border-color:var(--ink)}
 
+
+/* p7 hub + dictionary */
+.qguide{font-size:12.5px;line-height:1.5;color:var(--lead);background:var(--ink-soft);border-radius:8px;padding:6px 10px}
+.guides{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.wherel{display:flex;flex-direction:column;background:var(--sheet);border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.wrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:10px;padding:10px 14px;border-top:1px solid var(--line);align-items:center}
+.wrow:first-child{border-top:none}
+.wk b{display:block;font-size:14.5px}
+.wk small{display:block;font-family:var(--f-mono);font-size:11px;color:var(--muted);line-height:1.4;overflow-wrap:anywhere}
+.wv{font-size:14px;font-weight:700;color:var(--ink)}
+.dtype{background:var(--sheet);border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.dtype+.dtype{margin-top:8px}
+.dtype summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px}
+.dtype summary::-webkit-details-marker{display:none}
+.dtype summary::after{content:"＋";font-family:var(--f-mono);color:var(--ink);font-weight:600}
+.dtype[open] summary::after{content:"−"}
+.dtype summary:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+.dn{font-weight:700;font-size:16px}
+.dm{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-left:auto}
+.dbody{padding:0 14px 16px;display:flex;flex-direction:column;gap:12px}
+.mainidea{margin:0;display:flex;flex-direction:column;gap:2px;font-size:14.5px;font-weight:700;line-height:1.6}
+.mock{border:1.5px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden}
+.seg{--c:var(--muted);border-left:5px solid var(--c);padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.seg+.seg{border-top:1px solid var(--line)}
+.r-main{--c:var(--ink)} .r-req{--c:var(--gold)} .r-detail{--c:var(--muted)} .r-meta{--c:var(--lead)}
+.sh{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.sl{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--lead)}
+.sa{font-size:14px;font-weight:700;color:var(--c)}
+.r-detail .sa{color:var(--lead)}
+.cue{font-size:13px;color:var(--muted);font-style:italic;overflow-wrap:anywhere}
+.sq{display:flex;flex-wrap:wrap;gap:4px}
+.sq span{font-size:11.5px;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:1px 7px;overflow-wrap:anywhere}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted)}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg i{width:12px;height:12px;border-radius:3px;background:var(--c)}
+.dtips{margin:0;padding-left:1.2em;font-size:13.5px;line-height:1.65;display:flex;flex-direction:column;gap:2px}
+.dbody .btn{align-self:flex-start}
+.wlist{display:grid;grid-template-columns:1fr 1fr;background:var(--sheet);border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.wi{padding:9px 12px;border-top:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.wi:nth-child(-n+2){border-top:none}
+.wi:nth-child(odd){border-right:1px solid var(--line)}
+.wi b{font-size:14.5px;overflow-wrap:anywhere}
+.wi span{font-size:12.5px;color:var(--muted)}
+.dnote{margin:0;font-size:12.5px}
+.pp{font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--ink)}
+@media (max-width:440px){.guides{grid-template-columns:1fr}.wlist{grid-template-columns:1fr}.wi:nth-child(odd){border-right:none}.wi:nth-child(2){border-top:1px solid var(--line)}.wrow{grid-template-columns:1fr;gap:2px}}
 @media (min-width:560px){.mgrid{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:440px){.prompt.big{font-size:26px}.brand h1{font-size:26px}.games{grid-template-columns:1fr 1fr}.game{padding:12px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -257,6 +303,11 @@ h1,h2,h3,h4{margin:0;text-wrap:balance}
   <div class="panel" data-panel="game" hidden><div class="games" id="gameTiles"></div></div>
   <div class="panel" data-panel="genre" hidden><div id="groups" class="panel"></div></div>
   <div class="panel" data-panel="tips" hidden>
+    <div class="guides">
+      <button class="qbtn" id="gP7"><b>Part 7 文書の型ガイド</b><small>どこに何の答えがあるか</small></button>
+      <button class="qbtn" id="gSig"><b>シグナルワード辞典</b><small>However・Unfortunately など</small></button>
+      <button class="qbtn" id="gPrep"><b>前置詞の組み合わせ</b><small>deal with・be eligible for など</small></button>
+    </div>
     <div class="filters" id="tipFilters"></div>
     <div class="tiplist" id="tipList"></div>
   </div>
@@ -286,6 +337,7 @@ h1,h2,h3,h4{margin:0;text-wrap:balance}
     <div class="timer" id="timer"><i id="timerBar"></i></div>
     <div class="qhead"><span class="qno" id="qNo">No. 01</span><span class="qcat" id="qCat"></span></div>
     <div class="qbody">
+      <div class="qguide" id="qGuide" hidden></div>
       <div id="qPassage" hidden></div>
       <button class="iconbtn replay" id="replay" hidden>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><span id="replayTxt">もう一度聞く</span></button>
@@ -333,6 +385,29 @@ h1,h2,h3,h4{margin:0;text-wrap:balance}
   </div>
 </section>
 
+<!-- PART 7 HUB -->
+<section id="p7hub" class="wrap" hidden>
+  <div class="topbar"><button class="iconbtn" id="hubBack">← ホーム</button><span class="eyebrow">PART 7</span></div>
+  <div class="group">
+    <h2 style="font-family:var(--f-display);font-weight:400;font-size:24px">文書の型ガイド</h2>
+    <p class="muted" style="margin:0;font-size:14px">Part 7は文書の型ごとに、答えがある場所がだいたい決まっています。型を開くと、どこに何が書かれているかが分かります。</p>
+  </div>
+  <div class="actions"><button class="btn" id="hubAll">全タイプから解く</button><button class="btn ghost" id="hubWhere">どこを読む？クイズ</button></div>
+  <div class="group"><h3>設問タイプ別・答えの場所</h3><div class="wherel" id="whereList"></div></div>
+  <div class="group"><h3>文書の型</h3><div class="legend" id="legend"></div><div id="typeList"></div></div>
+</section>
+
+<!-- DICTIONARY -->
+<section id="sigdict" class="wrap" hidden>
+  <div class="topbar"><button class="iconbtn" id="dictBack">← ホーム</button><span class="eyebrow">辞典</span></div>
+  <div class="tabs" id="dictTabs" role="tablist">
+    <button class="tab" role="tab" data-d="sig" aria-selected="true">シグナルワード</button>
+    <button class="tab" role="tab" data-d="prep" aria-selected="false">前置詞の組み合わせ</button>
+  </div>
+  <div class="actions" id="dictActs"></div>
+  <div class="panel" id="dictBody"></div>
+</section>
+
 <!-- DAY PACK -->
 <section id="day" class="wrap" hidden>
   <div class="topbar"><button class="iconbtn" id="dayBack">← ホーム</button><span class="eyebrow">当日直前パック</span></div>
@@ -341,6 +416,7 @@ h1,h2,h3,h4{margin:0;text-wrap:balance}
     <button class="qbtn" id="dayQuiz"><b>鉄則クイズ</b><small>解き方のルールを確認</small></button>
     <button class="qbtn" id="dayP1"><b>Part 1 ワナ見抜き</b><small>写真描写の定番ひっかけ</small></button>
     <button class="qbtn" id="dayTips"><b>裏技だけ読む</b><small>コツ集から裏技を抜粋</small></button>
+    <button class="qbtn" id="dayP7"><b>Part 7 文書の型ガイド</b><small>型ごとの答えの場所を確認</small></button>
   </div>
   <div class="group">
     <h3>リーディング75分の時間配分</h3>
@@ -356,6 +432,7 @@ h1,h2,h3,h4{margin:0;text-wrap:balance}
 </section>
 
 </div>
+
 <script>
 /* pair: [英語, 日本語, ひとこと] */
 const VOCAB=[
@@ -590,6 +667,7 @@ const PHR=[
 ["in place of","〜の代わりに","in place of Mr. Ono"],["be accustomed to","〜に慣れている","後ろは名詞か〜ing"],["be familiar with","〜をよく知っている","be familiar with the software"],
 ["be aware of","〜に気づいている","be aware of the risk"],["back up","支持する・予備を作る","back up your data"]
 ];
+
 /* mc: [問題, 正解, [誤答...], 解説] */
 const CONF=[
 ["「影響を与える」（動詞）は？","affect",["effect","afford","infect"],"affect は動詞「影響する」。effect は名詞「効果・影響」。"],
@@ -795,6 +873,7 @@ const RULE=[
 ["Part 3の図表問題で、会話の中でそのまま言われるのは？","選択肢に載っていない側の情報",["選択肢の語そのもの","図表のタイトル","何も言われない"],"選択肢が部屋番号なら、会話ではワークショップ名が言われる。図表で対応させる。"],
 ["Part 6の文挿入問題を解くコツは？","前後の代名詞・接続語を手がかりにする",["一番長い文を選ぶ","最初に解く","選択肢を全部訳す"],"this / these / also / however などが前後とつながる文が正解。"]
 ];
+
 /* Part 3: 会話。sp=[[話者,セリフ]], g=図表(任意) */
 const P3=[
 {kind:"会話・オフィス",sp:[["W","Hi Mark, I'm placing the monthly order for office supplies. Do you need anything?"],["M","Actually, yes. Our team is running low on printer toner. Could you add two cartridges?"],["W","Sure. But the supplier just raised its prices, so I'll need approval from Ms. Lee for anything over two hundred dollars."],["M","I see. I'll send her an e-mail right now explaining why we need it."]],
@@ -949,6 +1028,7 @@ qs:[["What is the purpose of the Web page?","To answer common questions",["To ad
 ["How much does a member pay for a 45-minute ride?","$1",["$0","$2","$3"],"最初の30分無料＋残り15分で $1。計算問題。"],
 ["What should users do if a bike is damaged?","Report it using the app",["Repair it themselves","Return it to the original station","Call the police"],"report it through the app→using the app。"]]}
 ];
+
 /* Part 5 本番形式（ビジネス文・本番の長さ） */
 const POS=[
 ["The marketing department has hired an ___ consultant to help redesign the company's Web site.","independent",["independence","independently","depend"],"冠詞 an＋___＋名詞 consultant → 形容詞。"],
@@ -1078,6 +1158,7 @@ const VOC5=[
 ["Thanks to the new marketing strategy, online sales have ___ expectations.","exceeded",["succeeded","proceeded","preceded"],"exceed expectations＝予想を上回る。"],
 ["Please make sure that all confidential documents are ___ stored in a locked cabinet.","securely",["severely","scarcely","seriously"],"securely stored＝安全に保管された。"]
 ];
+
 /* 本番の長さに合わせた追加セット */
 P3.push(
 {kind:"会話・配送トラブル",sp:[["W","Hello, I'm calling about the printer I ordered from your Web site last week. The confirmation said it would arrive on Monday, but it still hasn't been delivered."],["M","I'm sorry about that. Could I have your order number, please?"],["W","Sure, it's four-eight-two-seven-one."],["M","Thank you. It looks like there was a problem at our distribution center, and your package was sent to the wrong address. I'll ship a new printer today by express delivery at no charge."],["W","Thanks. I really need it by Thursday because I'm printing materials for a workshop."],["M","Express delivery takes two days, so it should arrive Wednesday. I'll also e-mail you a tracking number."]],
@@ -1142,6 +1223,242 @@ qs:[["What is the purpose of the memo?","To announce a temporary closure",["To i
 ["What are employees asked to do?","Take personal food home each day",["Bring their own coffee","Use the kitchen on the second floor","Sign up for a seating area"],"take any personal food items home each evening→each day。"],
 ["What is NOT mentioned as a feature of the renovated kitchen?","A dishwasher",["A larger refrigerator","An additional microwave","A seating area"],"NOT問題。最後の文の3つと照合して、書かれていないものを選ぶ。"]]}
 );
+
+/* ===== 前置詞の組み合わせ（deal with 型）Part 5形式 ===== */
+const PREP=[
+["The new factory must comply ___ all local environmental regulations.","with",["to","for","on"],"comply with〜＝〜に従う。"],
+["Our customer service team is trained to deal ___ a wide range of complaints.","with",["for","on","at"],"deal with〜＝〜に対処する。"],
+["Many small businesses depend ___ online sales for most of their revenue.","on",["with","in","for"],"depend on〜＝〜に頼る（rely on も同じ）。"],
+["Ms. Fong plans to apply ___ the position of assistant manager.","for",["to","on","with"],"apply for＋職・許可。apply to＋会社・組織。"],
+["Interested candidates should apply ___ the human resources department by e-mail.","to",["for","with","at"],"apply to＋提出先。apply for＋求めるもの、との区別がPart 5の定番。"],
+["The committee consists ___ eight members from different departments.","of",["in","with","from"],"consist of〜＝〜から成る。"],
+["Poor weather conditions resulted ___ the cancellation of the outdoor concert.","in",["from","to","of"],"A result in B＝AがBという結果になる。"],
+["The delay resulted ___ a shortage of qualified workers.","from",["in","to","with"],"A result from B＝AはBが原因。in と from で因果が逆になる。"],
+["Online orders now account ___ nearly half of the company's total sales.","for",["to","with","of"],"account for〜＝〜を占める・説明する。"],
+["Please respond ___ this invitation by March 3.","to",["for","with","on"],"respond to〜＝〜に返答する。"],
+["More than 200 employees participated ___ the annual charity walk.","in",["on","at","to"],"participate in〜＝take part in。"],
+["Hartwell Consulting specializes ___ helping startups secure funding.","in",["on","at","with"],"specialize in〜。"],
+["This year's conference will focus ___ sustainable business practices.","on",["in","at","to"],"focus on〜。"],
+["Mr. Ellis has contributed ___ the success of several major projects.","to",["for","on","in"],"contribute to〜＝〜に貢献する。to は前置詞なので後ろは名詞・動名詞。"],
+["Several staff members objected ___ the proposed changes to the work schedule.","to",["against","with","on"],"object to〜＝〜に反対する。"],
+["Customers can subscribe ___ our monthly newsletter on our Web site.","to",["for","in","with"],"subscribe to〜＝〜を定期購読する。"],
+["The firm succeeded ___ reducing its energy costs by 20 percent.","in",["on","at","to"],"succeed in -ing＝〜に成功する。"],
+["The company plans to invest heavily ___ new technology next year.","in",["on","to","at"],"invest in〜。"],
+["Ms. Grant called the hotel to inquire ___ the availability of meeting rooms.","about",["to","on","with"],"inquire about〜＝〜について問い合わせる。"],
+["We apologize ___ any inconvenience the delay may have caused.","for",["to","about","with"],"apologize for＋理由（apologize to＋人）。"],
+["The airline will compensate passengers ___ the delayed flight.","for",["with","to","about"],"compensate 人 for〜＝〜の補償をする。"],
+["Employees who work more than 40 hours a week qualify ___ overtime pay.","for",["to","with","in"],"qualify for〜＝〜の資格を得る。"],
+["Only full-time staff are eligible ___ the company's health insurance plan.","for",["to","with","of"],"be eligible for〜＝〜の対象になる。"],
+["Mr. Ruiz is responsible ___ training all new sales representatives.","for",["of","to","with"],"be responsible for〜。"],
+["Applicants must be familiar ___ standard accounting software.","with",["to","for","about"],"be familiar with〜＝〜に詳しい。"],
+["Please be aware ___ the new security procedures at the main entrance.","of",["about","for","with"],"be aware of〜＝〜に気づいている。"],
+["The new printer is capable ___ producing 60 pages per minute.","of",["to","for","in"],"be capable of -ing。"],
+["All prices listed in the catalog are subject ___ change without notice.","to",["for","of","with"],"be subject to change＝変更されることがある。お知らせの定番。"],
+["Riverside Bank is committed ___ providing excellent customer service.","to",["for","in","on"],"be committed to -ing。to のあとは動名詞。"],
+["Ms. Kim is in charge ___ organizing the company's year-end party.","of",["for","with","to"],"in charge of〜。"],
+["The software is compatible ___ most smartphones and tablets.","with",["to","for","of"],"be compatible with〜＝〜と互換性がある。"],
+["All meeting rooms are equipped ___ projectors and video conferencing systems.","with",["by","of","for"],"be equipped with〜＝〜を備えている。"],
+["Most guests said they were satisfied ___ the quality of the service.","with",["for","of","on"],"be satisfied with〜。"],
+["Some residents are concerned ___ the increase in traffic near the new mall.","about",["for","with","on"],"be concerned about〜＝〜を心配している。"],
+["The film is based ___ a best-selling novel by Laura Chen.","on",["in","at","of"],"be based on〜＝〜に基づく。会社の所在地なら be based in。"],
+["Greenfield Bakery is known ___ its fresh sourdough bread.","for",["as","to","with"],"be known for〜＝〜で有名。known as は「〜として」。"],
+["In addition ___ a competitive salary, the position offers flexible working hours.","to",["of","with","for"],"in addition to〜＝〜に加えて。"],
+["In response ___ customer feedback, the store has extended its opening hours.","to",["for","of","with"],"in response to〜＝〜に応えて。"],
+["The city has received many requests for better access ___ public transportation.","to",["for","of","in"],"access to〜（名詞）。"],
+["Demand ___ electric bicycles has risen sharply in recent years.","for",["of","to","on"],"demand for〜＝〜の需要。"],
+["The report shows a significant increase ___ online sales.","in",["of","to","on"],"an increase in〜＝〜の増加。"],
+["The engineers are still looking for a solution ___ the problem.","to",["of","on","at"],"a solution to〜＝〜の解決策。"],
+["Please refrain ___ talking on your phone in the library.","from",["of","to","with"],"refrain from -ing。"],
+["Local businesses will benefit ___ the new highway.","from",["of","to","with"],"benefit from〜＝〜から恩恵を受ける。"],
+["The new safety rules prevent unauthorized visitors ___ entering the factory floor.","from",["to","of","with"],"prevent O from -ing。"],
+["We will provide all participants ___ a printed copy of the agenda.","with",["for","to","of"],"provide 人 with 物（provide 物 for/to 人）。"],
+["The manager replaced the old desks ___ new adjustable ones.","with",["for","to","by"],"replace A with B＝AをBに取り替える。"],
+["Ms. Lopez agreed ___ the terms of the contract after a short discussion.","to",["with","on","about"],"agree to＋提案・条件、agree with＋人・意見、agree on＋決める事柄。"]
+];
+/* 一覧＋前置詞ラッシュ用: [表示, 意味, 他に成り立つ前置詞] */
+const PREPLIST=[
+{p:"with",note:"「〜と・〜を相手に」",items:[["deal ___","対処する",["in"]],["comply ___","従う"],["cope ___","うまく対処する"],["be familiar ___","詳しい",["to"]],["be equipped ___","備えている"],["be compatible ___","互換性がある"],["be satisfied ___","満足している"],["provide 人 ___ 物","人に物を提供する"],["replace A ___ B","AをBに取り替える"]]},
+{p:"for",note:"「〜を求めて・〜に対して」",items:[["apply ___（職・許可）","応募する・申請する",["to"]],["account ___","占める・説明する"],["be responsible ___","責任がある",["to"]],["be eligible ___","対象になる",["to"]],["qualify ___","資格を得る",["in"]],["apologize ___","謝る（理由）",["to"]],["compensate ___","補償する"],["be known ___","〜で有名",["to"]],["demand ___（名詞）","〜の需要"]]},
+{p:"on",note:"「〜に頼って・〜に集中して」",items:[["depend ___","頼る"],["rely ___","頼る"],["focus ___","集中する"],["insist ___","主張する"],["concentrate ___","集中する"],["be based ___","基づく",["in"]],["comment ___","意見を述べる",["about"]]]},
+{p:"in",note:"「〜の中に・〜の分野で」",items:[["participate ___","参加する"],["specialize ___","専門にする"],["invest ___","投資する"],["succeed ___","成功する",["to"]],["result ___","〜という結果になる",["from"]],["be interested ___","興味がある"],["increase ___（名詞）","〜の増加",["of"]]]},
+{p:"to",note:"「〜へ向かって」。to は前置詞なので後ろは名詞・動名詞",items:[["respond ___","返答する"],["refer ___","参照する"],["contribute ___","貢献する"],["belong ___","所属する"],["object ___","反対する"],["subscribe ___","定期購読する"],["adapt ___","適応する"],["be committed ___","専念している"],["be subject ___","〜の対象となる"],["be accustomed ___","慣れている"],["in addition ___","〜に加えて"],["in response ___","〜に応えて"],["look forward ___","楽しみにする"],["access ___（名詞）","〜の利用"],["solution ___（名詞）","〜の解決策",["for"]]]},
+{p:"of",note:"「〜の・〜について」",items:[["consist ___","〜から成る"],["approve ___","賛成する"],["be aware ___","気づいている"],["be capable ___","能力がある"],["in charge ___","担当している"],["take advantage ___","利用する"],["dispose ___","処分する"]]},
+{p:"from",note:"「〜から（離れて）」",items:[["result ___","〜が原因である",["in"]],["benefit ___","恩恵を受ける"],["refrain ___","控える"],["prevent O ___ -ing","Oが〜するのを防ぐ"],["recover ___","回復する"]]},
+{p:"about",note:"「〜について」",items:[["inquire ___","問い合わせる",["into"]],["complain ___","苦情を言う",["of","to"]],["be concerned ___","心配している",["with"]]]}
+];
+const PREPFLAT=PREPLIST.flatMap(g=>g.items.map(it=>[it[0],g.p,it[1],it[2]||[]]));
+
+/* ===== シグナルワード ===== */
+const SIG=[
+["The new software is expensive. ___, it will save us time and money in the long run.","However",["Therefore","For example","In addition"],"前後が「高い」⇔「節約になる」と逆の内容 → 逆接 However。逆接の後ろは筆者が言いたいこと。"],
+["Our flight was canceled due to the storm. ___, we had to stay another night in Chicago.","As a result",["However","For instance","Otherwise"],"原因（欠航）→結果（もう1泊）→ As a result。"],
+["The hotel offers free Wi-Fi in every room. ___, guests can use the fitness center at no extra charge.","In addition",["However","As a result","Instead"],"良い点に良い点を追加 → In addition。"],
+["Many items are now available online. ___, customers can order office chairs and desks through our Web site.","For example",["However","Nevertheless","Otherwise"],"「多くの商品」→ 具体例（椅子と机）→ For example。"],
+["Please submit your application by Friday. ___, it may not be considered.","Otherwise",["Therefore","Moreover","Similarly"],"「金曜までに出して。さもないと〜」→ Otherwise。"],
+["We will not hold the meeting in Room A. ___, it will take place in the main conference hall.","Instead",["Moreover","Therefore","For example"],"「Aではなく、代わりに〜」→ Instead。前に否定文があるのが目印。"],
+["Construction on the new office will finish in May. ___, staff will continue working at the current location.","In the meantime",["As a result","For example","In addition"],"完成まで（その間）は今の場所で → In the meantime。"],
+["Sales in Europe decreased last quarter. ___, sales in Asia rose by 15 percent.","In contrast",["Therefore","For instance","As a result"],"2つの対照的な事実を比べる → In contrast。"],
+["First, fill out the registration form. ___, submit it to the front desk with your ID.","Then",["However","Instead","Otherwise"],"手順の順番 → Then。"],
+["Ms. Park has extensive experience in marketing. ___, she speaks three languages fluently.","Moreover",["However","Instead","Otherwise"],"長所に長所を追加 → Moreover（＝Furthermore, In addition）。"],
+["The printer was repaired last week. ___, it stopped working again this morning.","Unfortunately",["Consequently","Furthermore","For example"],"残念な出来事を導く → Unfortunately。"],
+["The training was very popular. ___, we have decided to offer it again next month.","Accordingly",["Instead","Nevertheless","Otherwise"],"「人気だった。それに応じて再開催」→ Accordingly（＝Therefore）。"],
+["Our customer service team is available 24 hours a day. ___, you can contact us at any time.","In other words",["However","Instead","Otherwise"],"同じ内容を言い換え → In other words。"],
+["We received many complaints about the long wait times. ___, we have hired five additional staff members.","To address this issue",["For example","In contrast","Even so"],"問題→対策。Part 6でよく出る句の形のつなぎ言葉。"],
+["You can pick up your order at our store. ___, we can deliver it to your home for a small fee.","Alternatively",["Therefore","Nevertheless","Consequently"],"別の選択肢を示す → Alternatively（あるいは）。"],
+["Mr. Smith could not attend the meeting. ___, his assistant went and took notes for him.","Instead",["Moreover","Similarly","For instance"],"本人の代わりに → Instead。"],
+["The Tokyo branch exceeded its sales target this year. ___, the Osaka branch reported record profits.","Similarly",["However","Instead","Otherwise"],"同じ方向の事実を並べる → Similarly（同様に）。"],
+["The new system is faster, cheaper, and easier to use. ___, it is better than the old one in every way.","In short",["For example","However","Otherwise"],"まとめ → In short（要するに）。"],
+["We would like to thank our sponsors, volunteers, and staff. ___, we thank all of you for attending tonight's event.","Finally",["However","Instead","Otherwise"],"スピーチの最後 → Finally。"],
+["Heavy snow blocked the highway. ___, many deliveries were delayed.","Consequently",["Nevertheless","Instead","In contrast"],"原因→結果 → Consequently。"],
+["The seminar was not expensive. ___, it was completely free for members.","In fact",["Therefore","Otherwise","As a result"],"前の内容をさらに強める → In fact（実際には）。"],
+["The weather forecast predicted rain. ___, the outdoor festival went ahead as planned.","Nevertheless",["Therefore","For example","Similarly"],"予想に反して決行 → Nevertheless（それでも）。"],
+["Most of our products are made in Germany. ___, a few components are imported from Japan.","However",["Therefore","In addition","Similarly"],"大部分⇔一部の例外 → However。"],
+["Part 3で 'Unfortunately, ...' と聞こえた。この後に来るのは？","問題点・悪い知らせ",["良い知らせ","話題の転換","具体例"],"Unfortunately / I'm afraid の後は「問題点は何か」の設問の答えになりやすい。"],
+["会話で 'Actually, ...' と聞こえた。この後に来るのは？","予想と違う事実・訂正",["相手への同意","具体例","前の話の繰り返し"],"Actually は「実は」。予定の変更や訂正が来て、設問の答えになりやすい。"],
+["会話で 'I'm afraid ...' と聞こえた。この後に来るのは？","断り・悪い知らせ",["依頼","提案","お礼"],"I'm afraid I can't... のように、申し訳なさを伴う内容が続く。"],
+["会話で 'Why don't we ...? / How about ...?' と聞こえた。これは？","提案",["理由の説明","苦情","質問への答え"],"What does the man suggest? の答えがここにある。"],
+["電話で 'The reason I'm calling is ...' と聞こえた。この後に来るのは？","電話の目的",["話者の職業","次の行動","問題の原因"],"Why is the speaker calling? の答え。I'm calling to / about も同じ。"],
+["会話の終わりで 'I'll ... / Let me ...' と聞こえた。この後に来るのは？","話者の次の行動",["相手への依頼","過去の出来事","問題点"],"What will the man do next? の答え。"],
+["会話で 'Could you ...? / Would you mind ...?' と聞こえた。これは？","相手への依頼",["話者の次の行動","提案","問題点"],"What does the woman ask the man to do? の答え。"],
+["会話で 'By the way, ...' と聞こえた。この後に来るのは？","話題の転換",["結論","前の話の具体例","問題の解決策"],"By the way の後は新しい話題。3問目の答えになることも多い。"],
+["Part 4で 'Please remember to ... / Don't forget to ...' と聞こえた。これは？","聞き手への注意・依頼",["話者の自己紹介","イベントの目的","天気予報"],"What are listeners asked to do? の答え。"],
+["Part 4で 'Stay tuned for ...' と聞こえた。この後に来るのは？","この後の番組内容",["番組の終了","広告主の名前","交通情報"],"What will listeners hear next? の答え。"],
+["Part 7のEメールで 'I am writing to ...' と書いてあった。ここで分かるのは？","メールの目的",["依頼","添付ファイル","差出人の役職"],"Why did X write the e-mail? の答え。I am writing regarding / Thank you for 〜 も目的の目印。"],
+["Eメールで 'Please find attached ... / Enclosed is ...' とあった。ここで分かるのは？","添付・同封されたもの",["メールの目的","締め切り","差出人の役職"],"What is included with the e-mail? の答え。"],
+["Eメールで 'I would appreciate it if you could ...' とあった。ここで分かるのは？","相手への依頼",["メールの目的","問題の背景","結論"],"What is X asked to do? の答え。Please 〜 / Could you 〜 も同じ。"],
+["お知らせで 'Please note that ...' とあった。この後に来るのは？","注意事項",["お知らせの目的","具体例","問い合わせ先"],"例外や条件が書かれていて、What is indicated about...? で問われやすい。"]
+];
+const SIGLIST=[
+{g:"逆接",note:"後ろに言いたいこと・答えが来やすい",w:[["however","しかし"],["nevertheless / nonetheless","それにもかかわらず"],["even so","たとえそうでも"],["on the other hand","一方で"],["in contrast","対照的に"],["although / though（＋文）","〜だけれども"],["despite / in spite of（＋名詞）","〜にもかかわらず"],["yet / still","それでも"],["unfortunately","残念ながら"]]},
+{g:"結果・理由",note:"原因→結果のつながり",w:[["therefore","したがって"],["as a result","その結果"],["consequently","その結果"],["thus","このように・したがって"],["accordingly","それに応じて"],["because / since（＋文）","〜なので"],["because of / due to / owing to（＋名詞）","〜のせいで"],["thanks to","〜のおかげで"]]},
+{g:"追加",note:"同じ方向の情報を足す",w:[["in addition","さらに"],["moreover / furthermore","さらに"],["also","また"],["besides","その上"],["similarly / likewise","同様に"],["as well","〜も"]]},
+{g:"例示・言い換え・まとめ",note:"具体例やまとめは選択肢の言い換えのヒント",w:[["for example / for instance","例えば"],["such as","〜のような"],["in other words","言い換えると"],["in fact","実際に（さらに強める）"],["in short / in summary","要するに"],["overall","全体として"]]},
+{g:"代わり・条件",note:"Part 6の文脈問題で頻出",w:[["instead","その代わりに"],["alternatively","あるいは"],["otherwise","さもないと・それ以外は"],["unless（＋文）","〜でない限り"],["provided that / as long as","〜という条件で"],["in that case","その場合は"]]},
+{g:"時の流れ",note:"手順・スケジュールの把握",w:[["first / then / finally","まず・次に・最後に"],["in the meantime / meanwhile","その間に"],["afterward","その後"],["previously","以前は"],["currently","現在"],["shortly","まもなく"]]},
+{g:"リスニングのシグナル",note:"Part 3・4で設問の答えが来る合図",w:[["Unfortunately / I'm afraid","問題点・悪い知らせ"],["Actually","予想外の事実・訂正"],["The reason I'm calling is / I'm calling to","電話の目的"],["Why don't we / How about / You should","提案"],["Could you / Would you mind","依頼"],["I'll / Let me","次の行動"],["By the way","話題の転換"],["Please remember to / Don't forget to","聞き手への注意"],["Stay tuned for","この後の内容"]]},
+{g:"読解のシグナル",note:"Part 7で設問の答えがある場所の目印",w:[["I am writing to / regarding","目的"],["Thank you for","目的（お礼から始まる）"],["Please / Could you / I would appreciate","依頼"],["Please find attached / Enclosed is","添付・同封物"],["Please note that","注意事項・例外"],["according to","発言者の意見"],["The only drawback / However（レビュー）","不満点"],["a plus / preferred（求人）","あれば有利（必須ではない）"]]}
+];
+
+/* ===== Part 7 どこを読む？クイズ ===== */
+const P7W=[
+["Eメールで『Why did Ms. Wu write the e-mail?』の答えがあるのは？","第1段落",["最後の段落","署名","日付"],"目的は第1段落の1〜2文目。I am writing to / regarding / Thank you for の後ろ。"],
+["Eメールで『What is Mr. Lee asked to do?』の答えがあるのは？","最後の段落（Please / Could you の文）",["第1段落","件名","日付"],"依頼は後半。Please / Could you / I would appreciate を探す。"],
+["記事で『What is the article mainly about?』の答えがあるのは？","見出しと第1段落",["最後の段落","引用部分","記事の日付"],"記事のmain ideaは見出しと第1段落。2段落目以降は背景と詳細。"],
+["記事で『According to Ms. Lee, why ...?』の答えがあるのは？","Ms. Lee の発言（引用部分）",["見出し","第1段落の1文目","最後の1文"],"According to 〜 は、その人の名前と said / 引用符を探す。"],
+["記事で『What will happen next month?』のような今後の予定があるのは？","最後の段落",["見出し","第1段落","引用部分"],"記事の最後は今後の予定・見通しで終わることが多い。"],
+["社内メモで『What are employees asked to do?』の答えがあるのは？","後半の Please / are asked to の文",["Re: の行","冒頭の日付","差出人の名前"],"お知らせ・メモの依頼は後半。must / should / are required to も目印。"],
+["お知らせで『Who is the notice most likely for?』の答えがあるのは？","冒頭の宛先（To / Dear / Attention 〜）",["最後の問い合わせ先","日付","署名"],"対象者は To 行や Attention tenants などの呼びかけで決まる。"],
+["求人広告で『What is NOT a requirement?』の解き方は？","応募条件の部分を選択肢と1つずつ照合",["見出しだけ読む","応募方法だけ読む","会社名から推測する"],"NOT問題は消去法。Requirements / Qualifications の部分を選択肢と照らし合わせる。"],
+["求人広告の 'a plus' / 'preferred' の意味は？","あれば有利（必須ではない）",["必須条件","応募の締め切り","給与の条件"],"「必須ではない」ことを問う設問がよく出る。"],
+["広告で『What is being advertised?』の答えがあるのは？","冒頭の見出し・キャッチコピー",["最後の連絡先","細かい注記","価格表"],"広告は最初の数行で商品やサービスが分かる。"],
+["チャットの意図問題『At 2:15, what does Mr. Ito mean when he writes ...?』の答えがあるのは？","その発言の直前と直後のメッセージ",["チャットの最初","最後のメッセージだけ","参加者の名前"],"直前の質問への返事として、直後の続きと合わせて意味を決める。"],
+["チャットで『What will Ms. Kim probably do next?』の答えがあるのは？","終盤のメッセージ",["最初のメッセージ","途中の雑談","時刻の表示"],"I'll / Let me を終盤で探す。"],
+["請求書・表で『What is indicated about the order?』の答えがありやすいのは？","表の下の注記（＊・Note）",["表のタイトル","書類番号","会社のロゴ"],"注記には例外・条件・割引が書かれ、高確率で設問になる。"],
+["レビューで『What did the reviewer complain about?』の答えがあるのは？","However / Unfortunately / The only drawback の後",["最初の1文","星の数","投稿者名"],"レビューは褒めてから不満を言う流れが多い。逆接の後を探す。"],
+["ウェブページで『What is the purpose of the Web page?』の答えがあるのは？","ページの見出しやタブ名（FAQ・About usなど）",["一番下の著作権表示","写真の説明","リンクの数"],"見出しでページの役割が分かる。"],
+["ダブルパッセージの1問目の答えは、多くの場合どこ？","1つ目の文書",["必ず2つ目の文書","必ず両方の文書","設問文の中"],"設問は文書の順番に並ぶことが多い。1問目は1つ目の文書から。"],
+["選択肢に金額や日付が並ぶ設問（ダブル・トリプル）は？","クロス問題を疑い、2つの文書を照らし合わせる",["1つ目の文書だけ見る","一番大きい数字を選ぶ","すぐに捨てる"],"料金表×注文メール、日程表×メールなどの組み合わせで解く。"],
+["設問に 'In the second e-mail, ...' とあったら？","2つ目のEメールだけ読めばよい",["全部の文書を読み直す","1つ目の文書を読む","後回しにする"],"どの文書か指定されていれば、そこだけ探せばいい。"],
+["同義語問題『The word 'cover' in paragraph 2 ...』はどこを読む？","その単語がある文（前後1文）",["文書全体","第1段落","見出し"],"辞書の意味ではなく、その文での意味で選ぶ。"],
+["文挿入問題（[1]〜[4] のどこに入るか）の手がかりは？","挿入文の代名詞・接続語と前後の文のつながり",["文の長さ","位置の番号の順番","段落の数"],"挿入文の this / they / also / however が前の文の何を指すかで決める。"],
+["推測問題（suggested / most likely）の正しい解き方は？","本文の根拠になる1文を見つけて選ぶ",["本文にない常識で選ぶ","一番長い選択肢を選ぶ","必ず最後の段落を見る"],"直接は書かれていないが、根拠は必ず本文にある。"],
+["Eメールで『Who most likely is Mr. Ortiz?』（受取人）の答えがあるのは？","宛先・本文の内容（何を頼まれているか）",["件名だけ","日付","添付ファイル名"],"職業は直接書かれないことが多い。頼まれている仕事や話題から推測する。"],
+["Eメールで差出人の役職を問われたら、まず見るのは？","最後の署名",["件名","第1段落","日付"],"署名に名前・役職・会社名がある。"]
+];
+
+/* ===== Part 7 文書の型ガイド ===== */
+const DOCTYPES=[
+{id:"email",name:"Eメール・手紙",short:"目的は第1段落、依頼は最後の段落、役職は署名",main:"目的は第1段落の1〜2文目（I am writing to / regarding / Thank you for の後ろ）。",
+segs:[{r:"meta",l:"From / To / Date / Subject",cue:"件名・宛先・日付",a:"誰から誰へ・話題",qs:["Who most likely is Ms. X?","What is the e-mail about?"]},
+{r:"main",l:"第1段落",cue:"I am writing to … / Thank you for …",a:"目的・主旨",qs:["Why did X write the e-mail?","What is the purpose of the e-mail?"]},
+{r:"detail",l:"第2段落（中盤）",cue:"日付・金額・理由・条件",a:"詳細",qs:["What is indicated about …?","When will …?"]},
+{r:"req",l:"最後の段落",cue:"Please … / Could you … / I would appreciate …",a:"依頼・次の行動",qs:["What is X asked to do?","What will X probably do next?"]},
+{r:"meta",l:"署名・追伸・添付",cue:"名前・役職・会社名 / P.S. / attached",a:"差出人の情報・添付物",qs:["Who is X?","What is included with the e-mail?"]}],
+tips:["設問が差出人と受取人のどちらについてかを必ず確認する。","件名に Re: があれば返信メール。前のやりとりの内容が前提になっている。","P.S.（追伸）は設問になりやすい。"]},
+{id:"article",name:"記事（新聞・社内報）",short:"main ideaは見出しと第1段落、意見は引用、今後の予定は最後",main:"見出し＋第1段落でmain idea（誰が・何をした）。2段落目以降は背景と詳細。",
+segs:[{r:"meta",l:"見出し・地名（RIVERTON —）",cue:"大文字の見出し・地名・日付",a:"話題・場所",qs:["Where is the company located?"]},
+{r:"main",l:"第1段落",cue:"誰が・いつ・何をしたか",a:"main idea",qs:["What is the article mainly about?","What is the purpose of the article?"]},
+{r:"detail",l:"中盤",cue:"数字・経緯・背景",a:"詳細",qs:["What is indicated about …?","How many …?"]},
+{r:"detail",l:"引用",cue:"'…,' said Ms. X / according to",a:"人物の意見・役職",qs:["According to Ms. X, why …?","Who is Mr. X?"]},
+{r:"req",l:"最後の段落",cue:"will / plans to / is scheduled to",a:"今後の予定・見通し",qs:["What will happen next month?","What does the company plan to do?"]}],
+tips:["記事は最も時間がかかる型。先に設問を読み、固有名詞を本文で探す。","人物の肩書き（CEO・spokesperson）は名前の直後のカンマ以下に書かれる。"]},
+{id:"notice",name:"お知らせ・社内メモ",short:"何が変わるかは冒頭、お願いは後半、問い合わせ先は最後",main:"冒頭1〜2文に「何が・いつ・どこで変わるか」。メモは Re: / Subject の行がそのままテーマ。",
+segs:[{r:"meta",l:"To / From / Date / Re:",cue:"宛先・件名",a:"対象者・テーマ",qs:["Who is the memo for?"]},
+{r:"main",l:"冒頭",cue:"will be closed / Starting Monday / We are pleased to announce",a:"告知の内容",qs:["What is the purpose of the notice?","What is being announced?"]},
+{r:"detail",l:"中盤",cue:"期間・場所・理由・代わりの手段",a:"詳細",qs:["Why …?","Where should employees …?"]},
+{r:"req",l:"後半",cue:"Please … / are asked to … / must …",a:"お願い・義務",qs:["What are employees asked to do?"]},
+{r:"meta",l:"末尾",cue:"contact … at extension …",a:"問い合わせ先",qs:["How can readers get more information?"]}],
+tips:["「誰に向けた文書か」は To 行・Dear 〜・Attention 〜 で決まる。","Please note that の後は例外や注意点。設問になりやすい。"]},
+{id:"ad",name:"広告・求人広告",short:"何の広告かは見出し、条件は中盤、特典・応募方法は最後",main:"冒頭の見出し・キャッチコピーで「何の広告か」。求人は1文目に会社と職種。",
+segs:[{r:"main",l:"見出し・キャッチコピー",cue:"Introducing … / NOW HIRING / Are you tired of …?",a:"商品・職種",qs:["What is being advertised?","What position is being advertised?"]},
+{r:"detail",l:"特徴・仕事内容",cue:"features / responsibilities include",a:"特徴・職務",qs:["What is a feature of the product?","What is one duty of the position?"]},
+{r:"detail",l:"条件",cue:"Requirements / Qualifications / a plus / preferred",a:"応募条件",qs:["What is required for the position?","What is NOT mentioned as a requirement?"]},
+{r:"req",l:"特典・期限",cue:"Order by … / for a limited time",a:"割引・特典",qs:["What is offered until …?"]},
+{r:"req",l:"申し込み方法・注記",cue:"To apply … / Visit … / ＊印",a:"応募・購入の方法、例外",qs:["How can people apply?","What is indicated about shipping?"]}],
+tips:["a plus / preferred は「あれば有利（必須ではない）」。","期限が2つ（応募締切と面接日など）出たら混同に注意。"]},
+{id:"chat",name:"テキストチャット",short:"話題は最初の数メッセージ、意図問題は直前と直後、次の行動は終盤",main:"最初の2〜3メッセージで「何が問題・何の相談か」。最後のほうで解決策・次の行動。",
+segs:[{r:"main",l:"冒頭のメッセージ",cue:"問題・相談の切り出し",a:"話題",qs:["What is the main topic of the discussion?","What problem does X mention?"]},
+{r:"detail",l:"やりとり",cue:"状況説明・情報",a:"詳細",qs:["What is indicated about …?"]},
+{r:"meta",l:"意図問題の発言",cue:"You bet. / Sure thing. / That works.",a:"直前の質問＋直後の続きで意味を決める",qs:["At 10:16, what does X mean when she writes '…'?"]},
+{r:"req",l:"終盤",cue:"I'll … / Let me …",a:"誰が何をするか",qs:["What will X most likely do next?"]}],
+tips:["名前の横の時刻が設問に出る。発言者と時刻をセットで追う。","参加者が3人以上のときは、誰が誰に話しかけているかを名前で確認する。"]},
+{id:"web",name:"ウェブページ・レビュー",short:"目的は見出し・タブ、不満は However の後",main:"上部の見出し・タブでページの目的（FAQ・会社紹介・サービス案内）。レビューは星と1文目が全体の評価。",
+segs:[{r:"meta",l:"見出し・タブ",cue:"Home | About | FAQ",a:"ページの目的",qs:["What is the purpose of the Web page?"]},
+{r:"detail",l:"各見出しの下",cue:"Q&A・料金・条件",a:"詳細（計算問題の材料）",qs:["How much does a member pay …?"]},
+{r:"main",l:"レビューの前半",cue:"I stayed / I bought …",a:"利用した理由・良い点",qs:["Why did X stay at the hotel?"]},
+{r:"req",l:"レビューの逆接の後",cue:"However / The only drawback / Unfortunately",a:"不満点",qs:["What did X complain about?"]}],
+tips:["料金ルール（最初の30分無料、以降15分ごとに$1など）は計算問題になる。"]},
+{id:"form",name:"表・日程表・請求書",short:"答えは表の中身より見出しと注記（＊）",main:"表は本文が短いぶん、見出しと注記（＊や小さい文字）に答えが集中する。",
+segs:[{r:"meta",l:"タイトル・番号・日付",cue:"Invoice # / Schedule / Day 1",a:"何の書類か",qs:["What is the purpose of the form?"]},
+{r:"detail",l:"表の中身",cue:"時刻・金額・数量・担当者",a:"詳細・クロス問題の材料",qs:["What will happen at 9:30?","How much …?"]},
+{r:"req",l:"注記",cue:"＊ / Note: / Please note",a:"条件・例外・割引",qs:["What is suggested about the workshop?","What is indicated about …?"]}],
+tips:["注記（＊）は高確率で設問になる。","合計金額の問題は、割引・送料の条件を必ず確認する。"]},
+{id:"multi",name:"ダブル・トリプル（複数文書）",short:"1問目は1つ目の文書、数字の設問はクロス問題",main:"1問目は1つ目の文書だけで解けることが多い。2つの文書にまたがるクロス問題が1セットに1〜2問ある。",
+segs:[{r:"main",l:"文書1",cue:"広告・料金表・お知らせが多い",a:"1〜2問目の答え",qs:["What is the purpose of the Web page?"]},
+{r:"main",l:"文書2・3",cue:"Eメール・レビュー・返信が多い",a:"3問目以降の答え",qs:["Why did X write the e-mail?"]},
+{r:"detail",l:"共通項",cue:"日付・人名・金額・商品名",a:"クロス問題（文書をつなぐ）",qs:["How much will X pay?","Which session will X miss?"]},
+{r:"req",l:"最後の文書",cue:"返信・その後の対応",a:"結論・次の行動",qs:["What will X probably do?"]}],
+tips:["設問に In the second e-mail などとあれば、その文書だけ読む。","選択肢に数字・日付が並ぶ設問はクロス問題を疑う。"]}
+];
+const WHERE=[
+["目的・主旨","purpose / mainly about / Why did X write","冒頭（第1段落・見出し）"],
+["依頼・次の行動","asked to do / will do next","後半（Please / I'll の文）"],
+["詳細","When / Where / How much","設問のキーワードを本文で探す"],
+["NOT問題","NOT mentioned / NOT true","選択肢を1つずつ本文と照合"],
+["推測","suggested / implied / most likely","根拠になる1文を探す"],
+["同義語","closest in meaning","その単語の文（前後1文）"],
+["文挿入","[1]〜[4] のどこに入るか","挿入文の代名詞・接続語と前後"],
+["意図（チャット）","what does X mean","直前と直後のメッセージ"]
+];
+function p7Type(set){const k=set.kind;
+  if(/ダブル|トリプル/.test(k))return "multi";if(/チャット/.test(k))return "chat";if(/記事/.test(k))return "article";
+  if(/広告/.test(k))return "ad";if(/Eメール|手紙/.test(k))return "email";if(/お知らせ|メモ/.test(k))return "notice";
+  if(/ウェブ|Web|レビュー/.test(k))return "web";if(/日程|請求|フォーム|表/.test(k))return "form";return "notice"}
+
+/* ===== Part 7 追加セット ===== */
+P7.push(
+{kind:"手紙（シングル）",docs:["Dear Mr. Alvarez,\n\nThank you for being a member of Peak Fitness for the past three years. I am writing to let you know about some changes to our membership plans that will take effect on July 1.\n\nStarting in July, the monthly fee for the Standard plan will increase from $40 to $45. However, Standard members will now be able to attend group classes, such as yoga and cycling, at no additional cost. Previously, these classes cost $8 each.\n\nIf you would prefer to switch to our Basic plan, which does not include classes, please visit the front desk or update your plan on our Web site before June 25.\n\nSincerely,\nNina Brooks\nMembership Manager, Peak Fitness"],
+qs:[["What is the purpose of the letter?","To announce changes to a service",["To welcome a new member","To advertise a new branch","To request a late payment"],"目的は第1段落。I am writing to let you know about some changes。"],
+["Who most likely is Mr. Alvarez?","A current gym member",["A new employee","A yoga instructor","A membership manager"],"受取人の推測。Thank you for being a member... for the past three years。"],
+["What is indicated about group classes?","They will be included in the Standard plan.",["They will cost $8 each.","They will be canceled.","They are offered only in July."],"However の後が大事な情報。$8 は以前の料金なのでワナ。"],
+["What should Mr. Alvarez do if he wants a cheaper plan?","Change his plan by June 25",["Call Ms. Brooks","Attend a yoga class","Pay $45 in advance"],"依頼・次の行動は最後の段落。"]]},
+{kind:"商品広告（シングル）",docs:["Introducing the AquaPure 300 — Clean Water, Anywhere!\n\nTired of buying bottled water? The AquaPure 300 filters up to 1,000 liters of tap water before you need to replace the filter. Its compact design fits easily in any kitchen, and installation takes less than ten minutes, with no tools required.\n\nOrder by May 31 and receive a second replacement filter free (a $25 value). All AquaPure products come with a two-year warranty.\n\n*Free shipping on orders over $100. Available at www.aquapure.com and at select home improvement stores."],
+qs:[["What is being advertised?","A water filter",["A bottled water delivery service","A kitchen design service","A plumbing tool"],"広告は見出しで何の商品か分かる。bottled water は冒頭の問いかけに出る語のワナ。"],
+["What is mentioned as a feature of the product?","It can be installed easily.",["It requires professional installation.","It comes in several colors.","It filters 2,000 liters."],"installation takes less than ten minutes, with no tools required の言い換え。"],
+["What will customers who order by May 31 receive?","An extra filter",["Free shipping","A three-year warranty","A $25 gift card"],"特典・期限は後半。$25 value は価値の説明でギフトカードではない。"],
+["What is indicated about shipping?","It is free for orders above a certain amount.",["It is always free.","It takes two weeks.","It is not available overseas."],"注記（＊）が設問になる典型。"]]},
+{kind:"テキストチャット（3人）",docs:["Paula Reyes [9:12 A.M.]\nThe client from Delmont Foods just moved our meeting up to 11:00 today. Can everyone make it?\n\nJin Woo [9:13 A.M.]\nI have a call with a supplier at 10:30, but it should be short.\n\nPaula Reyes [9:14 A.M.]\nThanks. Ahmed?\n\nAhmed Saleh [9:20 A.M.]\nSorry, just saw this. I'm at the dentist until 11:30.\n\nPaula Reyes [9:21 A.M.]\nNo problem. Jin, could you bring the updated sales figures, then? Ahmed usually presents them.\n\nJin Woo [9:22 A.M.]\nSure. Ahmed, are they in the shared folder?\n\nAhmed Saleh [9:24 A.M.]\nThey are. I'll send you a direct link right now."],
+qs:[["What is the discussion mainly about?","A change in a meeting time",["A new supplier","A dental appointment","A sales target"],"話題は冒頭。moved our meeting up to 11:00。"],
+["At 9:21 A.M., what does Ms. Reyes imply when she writes, 'No problem'?","Mr. Saleh does not need to attend the meeting.",["She will reschedule the meeting.","She also has a dental appointment.","She has already sent the figures."],"意図問題。直前は「歯医者で出られない」、直後は「代わりに Jin が資料を」。"],
+["Who usually presents the sales figures?","Mr. Saleh",["Ms. Reyes","Mr. Woo","The client"],"Ahmed usually presents them。人名と発言者を対応させる。"],
+["What will Mr. Saleh most likely do next?","Send Mr. Woo a link",["Call the client","Present the sales figures","Leave the dentist's office"],"次の行動は終盤の I'll。"]]},
+{kind:"日程表（シングル）",docs:["Northgate Business Expo — Day 1 Schedule (Hall B)\n\n9:00–9:30    Registration and coffee\n9:30–10:30   Keynote: The Future of Retail — Carla Mendes, CEO, ShopLine\n10:45–12:00  Workshop: Social Media for Small Shops — Victor Hale\n12:00–1:00   Lunch (provided for registered attendees)\n1:00–2:30    Panel discussion: Hiring in a Changing Market\n\n*The workshop is limited to 40 participants. Sign up at the registration desk.\n*Ms. Mendes's talk will be recorded and posted online after the event."],
+qs:[["What will happen at 9:30?","A keynote speech will begin.",["Registration will open.","A workshop will start.","Lunch will be served."],"表の中身から時刻で探す。"],
+["What is suggested about the workshop?","Space is limited.",["It will be recorded.","It is held in Hall A.","It costs extra."],"注記（＊）が答え。recorded は Ms. Mendes の講演の話なのでワナ。"],
+["Who is Carla Mendes?","A company executive",["A workshop leader","A conference organizer","A recruiter"],"CEO→company executive の言い換え。"],
+["What is indicated about Ms. Mendes's talk?","It will be available online later.",["It was canceled.","It will take place after lunch.","It is only for CEOs."],"2つ目の注記。"]]}
+);
+
 /* コツ・裏技集: c=分類, t=見出し, b=本文, x=裏技 */
 const TIPS=[
 {c:"全体戦略",t:"スコアは時間配分で決まる",b:"リーディングは Part 5 に10分、Part 6 に8分、Part 7 に57分が目安。Part 7 を最後まで解ききれない人が多いので、Part 5・6 で時間を貯金するのが最優先です。"},
@@ -1215,8 +1532,9 @@ const TIPS=[
 {c:"都市伝説",t:"「同じ記号は3回続かない」はウソ",b:"同じ記号が続くことは普通にあります。自分の答えを記号の並びで疑わないこと。"},
 {c:"都市伝説",t:"「先読みしないほうがいい」はウソ",b:"Part 3・4 の先読みは基本戦略。ペースを崩すくらいなら設問だけでも読むほうが有利です。"}
 ];
+
 /* ======================= CONFIG ======================= */
-const DATA={vocab:VOCAB,syn:SYN,phr:PHR,conf:CONF,homo:HOMO,col:COL,pos:POS,gra:GRA,voc5:VOC5,p1:P1,p2:P2,p3:P3,p4:P4,p6:P6,p7:P7,rule:RULE};
+const DATA={vocab:VOCAB,syn:SYN,phr:PHR,conf:CONF,homo:HOMO,col:COL,pos:POS,gra:GRA,voc5:VOC5,p1:P1,p2:P2,p3:P3,p4:P4,p6:P6,p7:P7,rule:RULE,prep:PREP,prepr:PREPFLAT,sig:SIG,p7w:P7W};
 const SETCATS=new Set(["p3","p4","p6","p7"]);
 const CAT={
  vocab:{name:"頻出単語",desc:"会議・出張・経理…TOEICの世界の言葉",time:7},
@@ -1234,7 +1552,11 @@ const CAT={
  p4:{name:"Part 4 説明文問題",desc:"",time:25,vtime:12},
  p6:{name:"Part 6 長文穴埋め",desc:"",time:30},
  p7:{name:"Part 7 読解",desc:"",time:45},
- rule:{name:"鉄則クイズ",desc:"",time:14}
+ rule:{name:"鉄則クイズ",desc:"",time:14},
+ prep:{name:"前置詞の組み合わせ",desc:"deal with、comply with、be eligible for など（Part 5形式）",time:13},
+ prepr:{name:"前置詞ラッシュ",desc:"deal ___＝対処する → with を一瞬で選ぶ",time:6},
+ sig:{name:"シグナルワード",desc:"However / Instead / Otherwise、Unfortunately、I am writing to など",time:13},
+ p7w:{name:"どこを読む？クイズ",desc:"Part 7の設問の答えが文書のどこにあるか",time:12}
 };
 const PARTS=[
  {n:1,id:"p1",name:"写真描写問題",desc:"状態か動作か、写っていない物のワナ"},
@@ -1243,11 +1565,11 @@ const PARTS=[
  {n:4,id:"p4",name:"説明文問題",desc:"留守電・アナウンス・広告・スピーチ"},
  {n:5,id:"p5",name:"短文穴埋め問題",desc:"品詞・動詞の形・接続詞・代名詞・語彙"},
  {n:6,id:"p6",name:"長文穴埋め問題",desc:"文脈・接続副詞・文挿入"},
- {n:7,id:"p7",name:"読解問題",desc:"シングル・ダブル・トリプル・文挿入・チャット"}
+ {n:7,id:"p7",name:"読解問題",desc:"文書の型ガイド付き。Eメール・記事・チャット・複数文書"}
 ];
-const P5CATS=["pos","gra","voc5"];
-const GENRES=[["Part 5 本番形式",["pos","gra","voc5"]],["語彙",["vocab","syn","phr"]],["基礎トレーニング（本番にこの形式では出ません）",["col","conf","homo"]]];
-const SHORT=["vocab","syn","phr","conf","homo","p1","p2","pos","col","gra","voc5"];
+const P5CATS=["pos","gra","voc5","prep"];
+const GENRES=[["Part 5 本番形式",["pos","gra","voc5","prep"]],["つなぎ言葉・読み方",["sig","p7w","prepr"]],["語彙",["vocab","syn","phr"]],["基礎トレーニング（本番にこの形式では出ません）",["col","conf","homo"]]];
+const SHORT=["vocab","syn","phr","conf","homo","p1","p2","pos","col","gra","voc5","prep","sig"];
 const BOSSES=[
  {id:"slime",name:"単語スライム",lv:1,desc:"頻出単語・言い換え・熟語",cats:["vocab","syn","phr"],hp:200},
  {id:"ghost",name:"ひっかけゴースト",lv:2,desc:"紛らわしい語・同音・Part 1・2",cats:["conf","homo","p1","p2"],hp:250},
@@ -1332,6 +1654,12 @@ function makeQ(cat,i,rev){
     return{...base,label:"言い換えると？（≒）",prompt:esc(w),big:"en",choices:mk(s,others(SYN,1,s,3)),answer:s,e:`${w} ≒ ${s}（${ja}）。Part 7ではこの言い換えで正解が作られる。`,audio:[{t:w}],autoSay:true,plain:w}}
   if(cat==="phr"){const [p,ja,ex]=d;
     return{...base,label:"意味は？",prompt:esc(p),big:"en",choices:mk(ja,others(PHR,1,ja,3)),answer:ja,e:`${p}＝${ja}（${ex}）`,audio:[{t:p}],autoSay:true,plain:p}}
+  if(cat==="prepr"){const [disp,p,ja,extra]=d;
+    const valid=new Set([p,...extra,...PREPFLAT.filter(x=>x[0]===disp).map(x=>x[1])]);
+    const ws=shuffle(["with","for","on","in","to","of","from","about","at"].filter(x=>!valid.has(x))).slice(0,3);
+    const full=disp.replace("___",p);
+    return{...base,label:"入る前置詞は？",prompt:`${esc(disp).replace("___",'<span class="blank"></span>')}<span class="sub">＝${esc(ja)}</span>`,big:"en",
+      choices:mk(p,ws),answer:p,e:`${full}＝${ja}`,sayEnd:full.replace(/（.*?）/g,""),plain:`${disp}（${ja}）`}}
   const [q,a,w,e]=d,q2={...base,choices:mk(a,w),answer:a,e,plain:q};
   if(cat==="p1"){
     return{...q2,label:"写真に最も合う英文は？",prompt:"",passage:`<div class="scene"><p>${esc(q)}</p></div>`,pclass:"",listenWait:true,hideChoices:true,audioFromChoices:true,plain:"写真："+q};
@@ -1339,6 +1667,8 @@ function makeQ(cat,i,rev){
   if(cat==="p2")return{...q2,label:"最も適切な応答は？",prompt:esc(q),hidePrompt:true,hideChoices:true,listenWait:true,audioFromChoices:true,qAudio:q};
   if(cat==="conf"||cat==="homo")return{...q2,label:"正しいのは？",prompt:esc(q),sayEnd:a};
   if(cat==="rule")return{...q2,label:"当日の鉄則",prompt:esc(q)};
+  if(cat==="p7w")return{...q2,label:"どこを読む？",prompt:esc(q)};
+  if(!q.includes("___"))return{...q2,label:"シグナルの意味は？",prompt:esc(q)};
   return{...q2,label:"空欄に入るのは？",prompt:esc(q).replace("___",'<span class="blank"></span>'),sayEnd:q.replace("___",a)};
 }
 function passageHTML(cat,set,qi){
@@ -1363,7 +1693,8 @@ function makeSQ(cat,si,qi,solo){
     label:`${set.kind}　設問 ${qi+1} / ${set.qs.length}`,prompt:esc(q).replace(/\[(\d)\]/,"[$1]"),
     passage:passageHTML(cat,set,qi),pclass:"passage",hidePassage:listen,
     audio,listenWait:listen&&first,replayText:"会話・トークをもう一度聞く",
-    choices:mk(a,w),answer:a,e,plain:`${set.kind}：${q}`};
+    choices:mk(a,w),answer:a,e,plain:`${set.kind}：${q}`,
+    guide:cat==="p7"?(DOCTYPES.find(t=>t.id===p7Type(set))||{}).short:null};
 }
 function makeAny(id){const p=id.split(":");if(!DATA[p[0]])return null;
   try{return p.length===3?makeSQ(p[0],+p[1],+p[2],true):makeQ(p[0],+p[1],false)}catch(e){return null}}
@@ -1379,7 +1710,8 @@ const setQs=(cat,si)=>DATA[cat][si].qs.map((_,qi)=>makeSQ(cat,si,qi,false));
 const qCount=cat=>SETCATS.has(cat)?DATA[cat].reduce((n,s)=>n+s.qs.length,0):DATA[cat].length;
 
 /* ======================= HOME ======================= */
-function show(id){for(const s of ["home","play","result","day","match"])$("#"+s).hidden=s!==id;window.scrollTo(0,0)}
+let backTo="home";
+function show(id){for(const s of ["home","play","result","day","match","p7hub","sigdict"])$("#"+s).hidden=s!==id;if(id==="p7hub"||id==="sigdict"||id==="day"||id==="home")backTo=id;window.scrollTo(0,0)}
 let curTab="part",tipFilter="すべて";
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>setTab(t.dataset.tab));
 function setTab(tab){curTab=tab;document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.tab===tab));
@@ -1390,7 +1722,7 @@ function renderHome(){
     const cnt=p.id==="p5"?P5CATS.reduce((n,c)=>n+qCount(c),0):qCount(p.id);
     const sets=SETCATS.has(p.id)?`${DATA[p.id].length}セット・`:"";
     return `<button class="tile" data-part="${p.id}"><span class="no">PART<b>${p.n}</b></span><span class="tx"><b>${p.name}</b><small>${p.desc}</small></span><span class="meta">${sets}${cnt}問<br>${bestTxt(p.id)}</span></button>`}).join("");
-  $("#partTiles").querySelectorAll(".tile").forEach(b=>b.onclick=()=>startPart(b.dataset.part));
+  $("#partTiles").querySelectorAll(".tile").forEach(b=>b.onclick=()=>b.dataset.part==="p7"?openP7Hub():startPart(b.dataset.part));
   const bossCards=BOSSES.map(b=>{const r=best["boss_"+b.id];return `<button class="game" data-boss="${b.id}"><span class="eyebrow">LV.${b.lv}　HP ${b.hp}</span><b>${b.name}</b><small>${b.desc}</small><span class="gbest">${r?"撃破済み・最少 "+r+"問":"未撃破"}</span></button>`}).join("");
   const gb=k=>best[k]==null?"未プレイ":"BEST "+best[k]+(k==="match"?"秒":"問");
   $("#gameTiles").innerHTML=`
@@ -1401,6 +1733,8 @@ function renderHome(){
     <button class="game" data-game="attack"><b>60秒アタック</b><small>60秒で何問いける？ミスは−3秒</small><span class="gbest">${gb("attack")}</span></button>
     <button class="game" data-game="tf"><b>○×スピード</b><small>単語と意味の組み合わせを瞬時に判定。45秒勝負</small><span class="gbest">${gb("tf")}</span></button>
     <button class="game" data-game="match"><b>ペアマッチ</b><small>英語と意味のペアを探す神経衰弱。タイムを競う</small><span class="gbest">${gb("match")}</span></button>
+    <button class="game" data-game="prepr"><b>前置詞ラッシュ</b><small>deal ___ → with。組み合わせを60秒で何問いける？</small><span class="gbest">${gb("prepr")}</span></button>
+    <button class="game" data-game="sigr"><b>シグナルラッシュ</b><small>However か Therefore か。つなぎ言葉を60秒で判定</small><span class="gbest">${gb("sigr")}</span></button>
     <div class="group game wide" style="padding:0;border:none;background:none;margin-top:6px"><h3>練習</h3></div>
     <button class="game" data-game="mix"><b>全ジャンルミックス</b><small>短問の全ジャンルからランダム</small><span class="gbest">${bestTxt("mix")}</span></button>
     <button class="game" data-game="miss" ${miss.size?"":"disabled"}><b>苦手復習</b><small>${miss.size?"間違えた問題 "+miss.size+"問":"間違えた問題がここにたまります"}</small><span class="gbest">正解すると消える</span></button>`;
@@ -1449,6 +1783,8 @@ function startGame(g){
   const goes={
     survival:()=>start({key:"survival",title:"サバイバル",mode:"survival",pool:SHORT.flatMap(pairsOf),again:goes.survival}),
     attack:()=>start({key:"attack",title:"60秒アタック",mode:"attack",seconds:60,pool:["vocab","syn","phr","homo","conf"].flatMap(pairsOf),again:goes.attack}),
+    prepr:()=>start({key:"prepr",title:"前置詞ラッシュ",mode:"attack",seconds:60,pool:pairsOf("prepr"),again:goes.prepr}),
+    sigr:()=>start({key:"sigr",title:"シグナルラッシュ",mode:"attack",seconds:60,pool:pairsOf("sig"),again:goes.sigr}),
     tf:()=>start({key:"tf",title:"○×スピード",mode:"attack",tf:true,seconds:45,pool:["vocab","syn","phr"].flatMap(pairsOf),again:goes.tf}),
     mix:()=>start({key:"mix",title:"全ジャンルミックス",qs:buildQs(SHORT.flatMap(pairsOf),settings.len),again:goes.mix}),
     miss:()=>{const qs=shuffle([...miss]).map(makeAny).filter(Boolean).slice(0,settings.len);if(!qs.length)return;start({key:"miss",title:"苦手復習",qs,noBest:true,again:goes.miss})}
@@ -1509,6 +1845,7 @@ function render(q){
   $("#qNo").textContent="No. "+pad(S.i+1)+(S.mode==="normal"?" / "+pad(S.qs.length):"");
   $("#qCat").textContent=q.catName;
   $("#qLabel").textContent=q.label;
+  const g=$("#qGuide");g.hidden=!q.guide;g.textContent=q.guide?"型のポイント："+q.guide:"";
   const p=$("#qPrompt");p.innerHTML=q.prompt;p.hidden=!q.prompt;
   p.className="prompt"+(q.big?" big"+(q.big==="ja"?" ja":""):"")+(q.hidePrompt&&vo?" hide":"");
   const pe=$("#qPassage");
@@ -1583,7 +1920,8 @@ function answer(k){
 function advance(){if(!S||!S.locked||S.done)return;if(S.over)return finish();S.i++;next()}
 $("#nextBtn").onclick=()=>{if(S&&S.mode!=="attack")advance()};
 $("#replay").onclick=()=>{if(S&&S.cur){const a=getAudio(S.cur);if(a)speakSeq(a)}};
-$("#quit").onclick=()=>{if(!S)return;clearTimeout(S.timer);cancelAnimationFrame(S.raf);S=null;stopSpeech();renderHome();show("home")};
+$("#quit").onclick=()=>{if(!S)return;clearTimeout(S.timer);cancelAnimationFrame(S.raf);S=null;stopSpeech();goBack()};
+function goBack(){renderHome();if(backTo==="p7hub")renderP7Hub();show(backTo)}
 
 function finish(){
   if(!S||S.done)return;S.done=true;clearTimeout(S.timer);cancelAnimationFrame(S.raf);stopSpeech();
@@ -1611,13 +1949,14 @@ function finish(){
   const last=S;
   $("#rAgain").onclick=()=>last.again&&last.again();
   $("#rRetry").onclick=()=>{const qs=last.missed.map(q=>makeAny(q.baseId)).filter(Boolean);if(qs.length)start({key:last.key,title:last.title+"（ミス再挑戦）",qs:shuffle(qs),noBest:true,again:last.again})};
+  $("#rHome").textContent=backTo==="home"?"ホームへ":"戻る";
   show("result");
 }
 function renderMissList(items){
   $("#rMissWrap").hidden=!items.length;
   $("#rMiss").innerHTML=items.map(m=>`<div class="miss"><span class="mq">${esc(m.q)}</span><span class="ma">${esc(m.a)}</span>${m.e?`<span class="me">${esc(m.e)}</span>`:""}</div>`).join("");
 }
-$("#rHome").onclick=()=>{S=null;renderHome();show("home")};
+$("#rHome").onclick=()=>{S=null;goBack()};
 
 /* ======================= PAIR MATCH ======================= */
 let M=null;
@@ -1666,12 +2005,12 @@ function endMatch(){
   $("#rAgain").onclick=startMatch;
   show("result");
 }
-$("#mQuit").onclick=()=>{if(M){cancelAnimationFrame(M.raf);M=null}renderHome();show("home")};
+$("#mQuit").onclick=()=>{if(M){cancelAnimationFrame(M.raf);M=null}goBack()};
 
 /* ======================= DAY PACK ======================= */
 $("#goDay").onclick=()=>show("day");
 $("#dayBack").onclick=()=>{renderHome();show("home")};
-$("#dayRush").onclick=()=>{const go=()=>start({key:"dayrush",title:"頻出ルール20問ラッシュ",qs:buildQs(["pos","gra","p2","voc5"].flatMap(pairsOf),20),again:go});go()};
+$("#dayRush").onclick=()=>{const go=()=>start({key:"dayrush",title:"頻出ルール20問ラッシュ",qs:buildQs(["pos","gra","p2","voc5","prep","sig","p7w"].flatMap(pairsOf),20),again:go});go()};
 $("#dayQuiz").onclick=()=>{const go=()=>start({key:"rule",title:"鉄則クイズ",qs:buildQs(pairsOf("rule"),RULE.length),again:go});go()};
 $("#dayP1").onclick=()=>startPart("p1");
 $("#dayTips").onclick=()=>{tipFilter="裏技";renderHome();setTab("tips");show("home")};
@@ -1689,6 +2028,57 @@ document.addEventListener("keydown",e=>{
     if(idx!=null&&idx<S.cur.choices.length){e.preventDefault();answer(idx)}
   }else if(S.mode!=="attack"&&(k==="enter"||k===" ")){e.preventDefault();advance()}
 });
+
+/* ======================= PART 7 HUB ======================= */
+const ROLE={main:"答えの中心",req:"依頼・次の行動・条件",detail:"詳細",meta:"差出人・見出し・注記"};
+function p7Sets(type){return DATA.p7.map((s,i)=>[s,i]).filter(([s])=>!type||p7Type(s)===type).map(([,i])=>i)}
+function startP7(type){
+  const list=p7Sets(type),name=type?DOCTYPES.find(t=>t.id===type).name:"全タイプ";
+  const go=()=>{const all=shuffle(list),sets=[];let c=0;
+    for(const si of all){if(c>=settings.len-1)break;sets.push(si);c+=DATA.p7[si].qs.length}
+    start({key:"p7",title:"Part 7 読解（"+name+"）",qs:sets.flatMap(si=>setQs("p7",si)),again:go})};
+  go();
+}
+function openP7Hub(){renderP7Hub();show("p7hub")}
+let openType=null;
+function renderP7Hub(){
+  $("#whereList").innerHTML=WHERE.map(([k,en,w])=>`<div class="wrow"><div class="wk"><b>${esc(k)}</b><small>${esc(en)}</small></div><div class="wv">${esc(w)}</div></div>`).join("");
+  $("#typeList").innerHTML=DOCTYPES.map(t=>{
+    const sets=p7Sets(t.id),n=sets.reduce((s,i)=>s+DATA.p7[i].qs.length,0);
+    return `<details class="dtype" data-t="${t.id}"${openType===t.id?" open":""}><summary><span class="dn">${esc(t.name)}</span><span class="dm">${sets.length}セット・${n}問</span></summary>
+    <div class="dbody">
+      <p class="mainidea"><span class="eyebrow">MAIN IDEA</span>${esc(t.main)}</p>
+      <div class="mock">${t.segs.map(s=>`<div class="seg r-${s.r}"><div class="sh"><span class="sl">${esc(s.l)}</span><span class="sa">→ ${esc(s.a)}</span></div><div class="cue">${esc(s.cue)}</div><div class="sq">${s.qs.map(q=>`<span>${esc(q)}</span>`).join("")}</div></div>`).join("")}</div>
+      <ul class="dtips">${t.tips.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      <button class="btn" data-play="${t.id}"${n?"":" disabled"}>この型を解く（${n}問）</button>
+    </div></details>`}).join("");
+  $("#typeList").querySelectorAll("[data-play]").forEach(b=>b.onclick=()=>startP7(b.dataset.play));
+  $("#typeList").querySelectorAll("details").forEach(d=>d.addEventListener("toggle",()=>{if(d.open)openType=d.dataset.t}));
+  $("#legend").innerHTML=Object.entries(ROLE).map(([r,l])=>`<span class="lg r-${r}"><i></i>${l}</span>`).join("");
+}
+$("#hubBack").onclick=()=>{renderHome();show("home")};
+$("#hubAll").onclick=()=>startP7(null);
+$("#hubWhere").onclick=()=>startCat("p7w");
+
+/* ======================= SIGNAL / PREP DICTIONARY ======================= */
+let dictTab="sig";
+function renderDict(){
+  document.querySelectorAll("#dictTabs .tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.d===dictTab));
+  if(dictTab==="sig"){
+    $("#dictBody").innerHTML=SIGLIST.map(g=>`<div class="group"><h3>${esc(g.g)}</h3><p class="muted dnote">${esc(g.note)}</p><div class="wlist">${g.w.map(([en,ja])=>`<div class="wi"><b>${esc(en)}</b><span>${esc(ja)}</span></div>`).join("")}</div></div>`).join("");
+    $("#dictActs").innerHTML=`<button class="btn" id="dQ1">シグナルワードクイズ（${SIG.length}問）</button><button class="btn ghost" id="dQ2">シグナルラッシュ（60秒）</button>`;
+    $("#dQ1").onclick=()=>startCat("sig");$("#dQ2").onclick=()=>startGame("sigr");
+  }else{
+    $("#dictBody").innerHTML=PREPLIST.map(g=>`<div class="group"><h3><span class="pp">${esc(g.p)}</span></h3><p class="muted dnote">${esc(g.note)}</p><div class="wlist">${g.items.map(([d,ja])=>`<div class="wi"><b>${esc(d.replace("___",g.p))}</b><span>${esc(ja)}</span></div>`).join("")}</div></div>`).join("");
+    $("#dictActs").innerHTML=`<button class="btn" id="dQ1">Part 5形式で解く（${PREP.length}問）</button><button class="btn ghost" id="dQ2">前置詞ラッシュ（60秒）</button>`;
+    $("#dQ1").onclick=()=>startCat("prep");$("#dQ2").onclick=()=>startGame("prepr");
+  }
+}
+function openDict(t){dictTab=t||dictTab;renderDict();show("sigdict")}
+document.querySelectorAll("#dictTabs .tab").forEach(t=>t.onclick=()=>{dictTab=t.dataset.d;renderDict()});
+$("#dictBack").onclick=()=>{renderHome();show("home")};
+$("#gP7").onclick=openP7Hub;$("#gSig").onclick=()=>openDict("sig");$("#gPrep").onclick=()=>openDict("prep");
+$("#dayP7").onclick=openP7Hub;
 
 renderHome();
 
